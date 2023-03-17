@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="pages/index.css">
+    <title>Mesto</title>
+</head>
+
+<body class="body">
+    <div class="page">
+
+        <section class="header">
+            <img class="logo" src="images\logo-white.svg">
+            <div class="header__line"></div>
+        </section>
+        <main class="content">
+            <section class="profile">
+                <img class="profile__avatar" src="images\avatar.jpg">
+                <div class="profile__info">
+                    <h1 class="profile__info__name">Жак-Ив Кусто</h1>
+                    <button class="profile__info__edit-btn"></button>
+                    <p class="profile__info__description">Исследователь океана</p>
+
+                </div>
+                <button class="profile__info__plus-btn"></button>
+            </section>
+            <section class="cards-block">
+            <div class="cards">
+                <figure class="element">
+                    <img class="element__image" src="images\kirill-pershin-1088404-unsplash.jpg">
+                    <figcaption class="element__info">
+                        <p class="element__title">Карачаевск</p>
+                        <button class="element__button" type="button"></button>
+                    </figcaption>
+                </figure>
+                <figure class="element">
+                    <img class="element__image" src="images\kirill-pershin-14043281-unsplash.jpg">
+                    <figcaption class="element__info">
+                        <p class="element__title">Гора Эльбрус</p>
+                        <button class="element__button" type="button"></button>
+                    </figcaption>
+                </figure>
+                <figure class="element">
+                    <img class="element__image" src="images\kirill-pershin-15516355-unsplash.jpg">
+                    <figcaption class="element__info">
+                        <p class="element__title">Домбай</p>
+                        <button class="element__button" type="button"></button>
+                    </figcaption>
+                </figure>
+                <figure class="element">
+                    <img class="element__image" src="images\kirill-pershin-14043281-unsplash.jpg">
+                    <figcaption class="element__info">
+                        <p class="element__title">Гора Эльбрус</p>
+                        <button class="element__button" type="button"></button>
+                    </figcaption>
+                </figure>
+                <figure class="element">
+                    <img class="element__image" src="images\kirill-pershin-15516355-unsplash.jpg">
+                    <figcaption class="element__info">
+                        <p class="element__title">Домбай</p>
+                        <button class="element__button" type="button"></button>
+                    </figcaption>
+                </figure>
+                <figure class="element">
+                    <img class="element__image" src="images\kirill-pershin-1088404-unsplash.jpg">
+                    <figcaption class="element__info">
+                        <p class="element__title">Карачаево-Черкесия</p>
+                        <button class="element__button" type="button"></button>
+                    </figcaption>
+                </figure>
+            </div>
+        </section> 
+
+        </main>
+        <footer class="footer">
+            <p class="footer__copyright">&#169; 2023 Mesto Russia</p>
+        </footer>
+
+
+
+    </div>
+
+    <div class="edit-form">
+        <div class="edit-form__popup">
+            <form class="edit-form__form">
+                <h2 class="edit-form__title">Редактировать профиль</h2>
+                <input class="edit-form__input" id="name" value="Жак-Ив Кусто">
+                <input class="edit-form__input" id="description" value="Исследователь океана">
+                <button class="edit-form__button" type="button">Сохранить</button>
+            </form>
+            <img class="edit-form__close-button" src="images/cross-icon.svg">
+        </div>
+
+    </div>
+    <script src="script.js"></script>
+</body>
+
+
+</html>

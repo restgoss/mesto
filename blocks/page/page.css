@@ -1,0 +1,11 @@
+.page {
+    align-items: center;
+    margin: 45px auto 0 auto;
+    max-width: 880px;
+}
+
+@media screen and (max-width: 767px) {
+    .page {
+        margin-top: 28px;
+    }
+}
