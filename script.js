@@ -1,10 +1,10 @@
 let formElement = document.querySelector('.edit-form');
 let nameInput = document.querySelector('#name')
 let descriptionInput = document.querySelector('#description');
-let currentName = document.querySelector('.profile__info__name');
-let currentDescription = document.querySelector('.profile__info__description');
+let currentName = document.querySelector('.profile__name');
+let currentDescription = document.querySelector('.profile__description');
 
-let editButton = document.querySelector('.profile__info__edit-btn');
+let editButton = document.querySelector('.profile__edit-btn');
 let closeEditButton = document.querySelector('.edit-form__close-button');
 let saveButton = document.querySelector('.edit-form__button');
 // let heartButton = document.querySelectorAll('.element__button');
