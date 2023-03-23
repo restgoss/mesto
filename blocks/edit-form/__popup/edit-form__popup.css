@@ -1,9 +1,0 @@
-.edit-form__popup {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    background-color: #FFF;
-    border-radius: 10px;
-    align-items: center;
-    justify-content: center;
-}
