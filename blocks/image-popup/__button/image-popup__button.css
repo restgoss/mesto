@@ -1,0 +1,18 @@
+.image-popup__button {
+    position: absolute;
+    top: -45px;
+    right: -45px;
+    width: 32px;
+    height: 32px;
+    background-image: url(../../../images/cross-icon.svg);
+    background-color: rgba(255, 255, 255, 0);
+    background-position: center;
+    background-repeat: no-repeat;
+    border: none;
+    transition: opacity .3s linear;
+}
+
+.image-popup__button:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}

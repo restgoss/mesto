@@ -27,49 +27,6 @@
             </section>
 
             <section class="cards">
-                <figure class="element">
-                    <img class="element__image" src="images/kirill-pershin-1088404-unsplash.jpg" alt="Карачаевск">
-                    <figcaption class="element__info">
-                        <h2 class="element__title">Карачаевск</h2>
-                        <button class="element__button" type="button"></button>
-                    </figcaption>
-                </figure>
-                <figure class="element">
-                    <img class="element__image" src="images/kirill-pershin-14043281-unsplash.jpg" alt="Гора Эльбрус">
-                    <figcaption class="element__info">
-                        <h2 class="element__title">Гора Эльбрус</h2>
-                        <button class="element__button" type="button"></button>
-                    </figcaption>
-                </figure>
-                <figure class="element">
-                    <img class="element__image" src="images/kirill-pershin-15516355-unsplash.jpg" alt="Домбай">
-                    <figcaption class="element__info">
-                        <h2 class="element__title">Домбай</h2>
-                        <button class="element__button" type="button"></button>
-                    </figcaption>
-                </figure>
-                <figure class="element">
-                    <img class="element__image" src="images/kirill-pershin-14043281-unsplash.jpg" alt="Гора Эльбрус">
-                    <figcaption class="element__info">
-                        <h2 class="element__title">Гора Эльбрус</h2>
-                        <button class="element__button" type="button"></button>
-                    </figcaption>
-                </figure>
-                <figure class="element">
-                    <img class="element__image" src="images/kirill-pershin-15516355-unsplash.jpg" alt="Домбай">
-                    <figcaption class="element__info">
-                        <h2 class="element__title">Домбай</h2>
-                        <button class="element__button" type="button"></button>
-                    </figcaption>
-                </figure>
-                <figure class="element">
-                    <img class="element__image" src="images/kirill-pershin-1088404-unsplash.jpg"
-                        alt="Карачаево-Черкесия">
-                    <figcaption class="element__info">
-                        <h2 class="element__title">Карачаево-Черкесия</h2>
-                        <button class="element__button" type="button"></button>
-                    </figcaption>
-                </figure>
             </section>
 
 
@@ -81,19 +38,42 @@
 
 
     </div>
-
-    <div class="popup">
-        <div class="popup__window">
-            <form class="popup__form" name="profile__info">
-                <h2 class="popup__title">Редактировать профиль</h2>
-                <input class="popup__input popup__input_value_name" value="Жак-Ив Кусто" name="profile__name">
-                <input class="popup__input popup__input_value_description" value="Исследователь океана" name="profile__description">
-                <button class="popup__button" type="submit">Сохранить</button>
-            </form>
-            <button type="button" class="popup__close-button" src="images/cross-icon.svg"></button>
+    <template id="card__template">
+        <figure class="element">
+            <img class="element__image" src="">
+            <figcaption class="element__info">
+                <h2 class="element__title"></h2>
+                <button class="element__button" type="button"></button>
+            </figcaption>
+        </figure>
+    </template>
+    <template id="popup">
+        <div class="popup">
+            <div class="popup__window">
+                <form class="popup__form">
+                    <h2 class="popup__title"></h2>
+                    <input class="popup__input" value="" name="" placeholder="" id="first-input">
+                    <input class="popup__input" value="" name="" placeholder="" id="second-input">
+                    <button class="popup__button" type="submit"></button>
+                </form>
+                <button type="button" class="popup__close-button" src="images/cross-icon.svg"></button>
+            </div>
         </div>
+    </template>
+
+    <template id="image-popup">
+        <div class="image-popup">
+            <div class="image-popup__container">
+                <img class="image-popup__image"
+                    src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg">
+                <button type="button" class="image-popup__button" src="images/cross-icon.svg"></button>
+                <p class="image-popup__description">Архыз</p>
+            </div>
+        </div>
+    </template>
 
     </div>
+    
     <script src="scripts/script.js"></script>
 </body>
 
