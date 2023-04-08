@@ -8,10 +8,14 @@
     position: relative;
 }
 
+
+
 @media screen and (max-width: 767px) {
     .profile__info {
         display: flex;
         flex-direction: column;
         grid-row-gap: 14px;
+        max-width: 245px;
     }
 }
+

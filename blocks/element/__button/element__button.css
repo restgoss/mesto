@@ -1,5 +1,5 @@
 .element__button {
-    background-color: #FFF;
+    background-color: rgba(255, 255, 255, 0);
     background-image: url(../../../images/heart-logo.svg);
     background-repeat: no-repeat;
     width: 22px;

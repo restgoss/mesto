@@ -13,65 +13,65 @@
 
         <header class="header">
             <img class="logo" src="images/logo-white.svg" alt="Логотип Mesto">
-            <div class="header__line"></div>
         </header>
         <main class="content">
             <section class="profile">
                 <img class="profile__avatar" src="images/avatar.jpg" alt="Изображение профиля">
                 <div class="profile__info">
                     <h1 class="profile__name">Жак-Ив Кусто</h1>
-                    <button class="profile__edit-btn"></button>
+                    <button class="profile__edit-btn" type="button"></button>
                     <p class="profile__description">Исследователь океана</p>
 
                 </div>
-                <button class="profile__plus-btn"></button>
+                <button class="profile__plus-btn" type="button"></button>
             </section>
-            <section class="cards-block">
-            <div class="cards">
+
+            <section class="cards">
                 <figure class="element">
                     <img class="element__image" src="images/kirill-pershin-1088404-unsplash.jpg" alt="Карачаевск">
                     <figcaption class="element__info">
-                        <p class="element__title">Карачаевск</p>
+                        <h2 class="element__title">Карачаевск</h2>
                         <button class="element__button" type="button"></button>
                     </figcaption>
                 </figure>
                 <figure class="element">
                     <img class="element__image" src="images/kirill-pershin-14043281-unsplash.jpg" alt="Гора Эльбрус">
                     <figcaption class="element__info">
-                        <p class="element__title">Гора Эльбрус</p>
+                        <h2 class="element__title">Гора Эльбрус</h2>
                         <button class="element__button" type="button"></button>
                     </figcaption>
                 </figure>
                 <figure class="element">
                     <img class="element__image" src="images/kirill-pershin-15516355-unsplash.jpg" alt="Домбай">
                     <figcaption class="element__info">
-                        <p class="element__title">Домбай</p>
+                        <h2 class="element__title">Домбай</h2>
                         <button class="element__button" type="button"></button>
                     </figcaption>
                 </figure>
                 <figure class="element">
                     <img class="element__image" src="images/kirill-pershin-14043281-unsplash.jpg" alt="Гора Эльбрус">
                     <figcaption class="element__info">
-                        <p class="element__title">Гора Эльбрус</p>
+                        <h2 class="element__title">Гора Эльбрус</h2>
                         <button class="element__button" type="button"></button>
                     </figcaption>
                 </figure>
                 <figure class="element">
                     <img class="element__image" src="images/kirill-pershin-15516355-unsplash.jpg" alt="Домбай">
                     <figcaption class="element__info">
-                        <p class="element__title">Домбай</p>
+                        <h2 class="element__title">Домбай</h2>
                         <button class="element__button" type="button"></button>
                     </figcaption>
                 </figure>
                 <figure class="element">
-                    <img class="element__image" src="images/kirill-pershin-1088404-unsplash.jpg" alt="Карачаево-Черкесия">
+                    <img class="element__image" src="images/kirill-pershin-1088404-unsplash.jpg"
+                        alt="Карачаево-Черкесия">
                     <figcaption class="element__info">
-                        <p class="element__title">Карачаево-Черкесия</p>
+                        <h2 class="element__title">Карачаево-Черкесия</h2>
                         <button class="element__button" type="button"></button>
                     </figcaption>
                 </figure>
-            </div>
-        </section> 
+            </section>
+
 
         </main>
         <footer class="footer">
@@ -82,19 +82,31 @@
 
     </div>
 
-    <div class="edit-form">
-        <div class="edit-form__popup">
-            <form class="edit-form__form">
-                <h2 class="edit-form__title">Редактировать профиль</h2>
-                <input class="edit-form__input" id="name" value="Жак-Ив Кусто">
-                <input class="edit-form__input" id="description" value="Исследователь океана">
-                <button class="edit-form__button" type="button">Сохранить</button>
+    <div class="popup" id="popup__edit">
+        <div class="popup__window">
+            <form class="popup__form" name="profile__info">
+                <h2 class="popup__title">Редактировать профиль</h2>
+                <input class="popup__input popup__input_value_name" value="Жак-Ив Кусто" name="profile__name">
+                <input class="popup__input popup__input_value_description" value="Исследователь океана" name="profile__description">
+                <button class="popup__button" type="submit">Сохранить</button>
             </form>
-            <img class="edit-form__close-button" src="images/cross-icon.svg" alt="Иконка Крест">
+            <button type="button" class="popup__close-button" src="images/cross-icon.svg"></button>
         </div>
-
     </div>
-    <script src="script.js"></script>
+
+    <div class="popup" id="popup__plus">
+        <div class="popup__window">
+            <form class="popup__form" name="profile__info">
+                <h2 class="popup__title">Редактировать профиль</h2>
+                <input class="popup__input popup__input_value_name" placeholder="Название" name="profile__name">
+                <input class="popup__input popup__input_value_description" placeholder="Ссылка на картинку" name="profile__description">
+                <button class="popup__button" type="submit" id="popup__add-btn">Создать</button>
+            </form>
+            <button type="button" class="popup__close-button" src="images/cross-icon.svg"></button>
+        </div>
+    </div>
+
+    <script src="scripts/script.js"></script>
 </body>
 
 
