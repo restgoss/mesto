@@ -1,7 +1,6 @@
 const formPopup = document.querySelector('.popup');
-const profileForm = document.querySelector('.popup__form')
-const nameInput = document.querySelector('.popup__input_value_name')
-const descriptionInput = document.querySelector('.popup__input_value_description');
+const plusPopup = document.querySelector('.popup_form_add');
+const editPopup = document.querySelector('.popup_form_edit');
 const currentName = document.querySelector('.profile__name');
 const currentDescription = document.querySelector('.profile__description');
 const editButton = document.querySelector('.profile__edit-btn');
@@ -9,8 +8,9 @@ const plusButton = document.querySelector('.profile__plus-btn');
 const closeButton = document.querySelector('.popup__close-button');
 const cardTemplate = document.querySelector('#card__template');
 const elementImage = document.querySelectorAll('.element__image');
+const body = document.querySelector('body');
+const imagePopup = document.querySelector('.image-popup');
 
-// работа с template //
 document.addEventListener('DOMContentLoaded', function () {
     const initialCards = [
         {
@@ -39,83 +39,78 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     ];
     const cardsSection = document.querySelector('.cards');
-
+    const imagePopup = document.querySelector('.image-popup');
     initialCards.forEach(element => {
         const clonedCard = cardTemplate.content.cloneNode(true);
         clonedCard.querySelector('.element__image').src = element.link;
         clonedCard.querySelector('.element__title').textContent = element.name;
         cardsSection.appendChild(clonedCard);
     });
+    cardsSection.addEventListener('click', function (evt) {
+        if (evt.target.classList.contains('element__delete-btn')) {
+            evt.target.closest('.element').remove();
+        }
+        if (evt.target.classList.contains('element__button')) {
+            evt.target.classList.toggle('element__button_active');
+        }
+        if (evt.target.classList.contains('element__image')) {
+            const parentNode = evt.target.closest('.element');
+            const parentTitle = parentNode.querySelector('.element__title');
+            imagePopup.querySelector('.image-popup__description').textContent = parentTitle.textContent;
+            imagePopup.querySelector('.image-popup__image').src = evt.target.src;
+            imagePopup.classList.add('image-popup_active');
+        }
+    })
+
 })
 
-
-// работа с template для попапов //
-
-const popupTemplate = document.querySelector('#popup');
-
-plusButton.addEventListener('click', function () {
-    const clonedPopup = popupTemplate.content.cloneNode(true);
-    const popupContainer = clonedPopup.querySelector('.popup');
-    const closeButton = clonedPopup.querySelector('.popup__close-button');
-    const saveButton = clonedPopup.querySelector('.popup__button');
-    const placeInput = clonedPopup.querySelector('#first-input');
-    const linkInput = clonedPopup.querySelector('#second-input');
-    const popupTitle = clonedPopup.querySelector('.popup__title');
-    const popupButton = clonedPopup.querySelector('.popup__button');
-    popupTitle.textContent = 'Новое место';
-    popupButton.textContent = 'Создать';
-    placeInput.placeholder = 'Название';
-    linkInput.placeholder = 'Ссылка на картинку';
-    document.body.appendChild(clonedPopup);
-    setTimeout(() => {
-        popupContainer.classList.add('popup_active');
-    }, 1);
-    closeButton.addEventListener('click', function () {
-        popupContainer.classList.remove('popup_active');
-    })
-    saveButton.addEventListener('click', function (evt) {
-        evt.preventDefault();
-        const cardsSection = document.querySelector('.cards');
-        const clonedCard = cardTemplate.content.cloneNode(true);
-        const elementImage = clonedCard.querySelector('.element__image');
-        const elementTitle = clonedCard.querySelector('.element__title');
-        cardsSection.prepend(clonedCard);
-        elementImage.src = linkInput.value;
-        elementTitle.textContent = placeInput.value;
-        popupContainer.classList.remove('popup_active');
+body.addEventListener('click', function (evt) {
+    if (evt.target.classList.contains('image-popup__button')) {
+        imagePopup.classList.remove('image-popup_active');
     }
-    )
 })
 
+function openPlusPopup() {
+    plusPopup.classList.add('popup_active');
+}
+
+function closePlusPopup() {
+    plusPopup.classList.remove('popup_active');
+}
+
+function handlePlusSubmit(evt) {
+    const cardsSection = document.querySelector('.cards');
+    const cardTitleForm = plusPopup.querySelector('#cardTitle');
+    const cardLinkForm = plusPopup.querySelector('#cardLink');
+    const clonedCard = cardTemplate.content.cloneNode(true);
+    evt.preventDefault();
+    clonedCard.querySelector('.element__image').src = cardLinkForm.value;
+    clonedCard.querySelector('.element__title').textContent = cardTitleForm.value;
+    cardsSection.prepend(clonedCard);
+    closePlusPopup()
+}
+
+function openEditPopup() {
+    editPopup.classList.add('popup_active');
+}
+
+function closeEditPopup() {
+    editPopup.classList.remove('popup_active');
+}
+
+function handleEditSubmit(evt) {
+    const newName = editPopup.querySelector('#userName');
+    const newDescr = editPopup.querySelector('#userDescription');
+    evt.preventDefault();
+    currentName.textContent = newName.value;
+    currentDescription.textContent = newDescr.value;
+    closeEditPopup()
+}
 
 
-editButton.addEventListener('click', function () {
-    const clonedPopup = popupTemplate.content.cloneNode(true);
-    const popupContainer = clonedPopup.querySelector('.popup');
-    const closeButton = clonedPopup.querySelector('.popup__close-button');
-    const saveButton = clonedPopup.querySelector('.popup__button');
-    const nameInput = clonedPopup.querySelector('#first-input');
-    const descriptionInput = clonedPopup.querySelector('#second-input');
-    const popupTitle = clonedPopup.querySelector('.popup__title');
-    const popupButton = clonedPopup.querySelector('.popup__button');
-    popupTitle.textContent = 'Редактировать профиль';
-    popupButton.textContent = 'Сохранить';
-    nameInput.placeholder = 'Имя';
-    descriptionInput.placeholder = 'Описание';
-    nameInput.value = currentName.textContent;
-    descriptionInput.value = currentDescription.textContent;
-    document.body.appendChild(clonedPopup);
-    setTimeout(() => {
-        popupContainer.classList.add('popup_active');
-    }, 1);
-    closeButton.addEventListener('click', function () {
-        popupContainer.classList.remove('popup_active');
-    })
-    saveButton.addEventListener('click', function (evt) {
-        evt.preventDefault();
-        currentName.textContent = nameInput.value;
-        currentDescription.textContent = descriptionInput.value;
-        popupContainer.classList.remove('popup_active');
-    })
-});
-
+plusButton.addEventListener('click', openPlusPopup);
+plusPopup.querySelector('.popup__close-button').addEventListener('click', closePlusPopup);
+plusPopup.addEventListener('submit', handlePlusSubmit);
+editButton.addEventListener('click', openEditPopup);
+editPopup.querySelector('.popup__close-button').addEventListener('click', closeEditPopup);
+editPopup.addEventListener('submit', handleEditSubmit);

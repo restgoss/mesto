@@ -10,7 +10,6 @@
 
 <body class="body">
     <div class="page">
-
         <header class="header">
             <img class="logo" src="images/logo-white.svg" alt="Логотип Mesto">
         </header>
@@ -25,57 +24,56 @@
                 </div>
                 <button class="profile__plus-btn" type="button"></button>
             </section>
-
             <section class="cards">
             </section>
-
-
         </main>
         <footer class="footer">
             <p class="footer__copyright">&#169; 2023 Mesto Russia</p>
         </footer>
-
-
-
     </div>
     <template id="card__template">
         <figure class="element">
             <img class="element__image" src="">
+            <button class="element__delete-btn" type="button"></button>
             <figcaption class="element__info">
                 <h2 class="element__title"></h2>
                 <button class="element__button" type="button"></button>
             </figcaption>
         </figure>
     </template>
-    <template id="popup">
-        <div class="popup">
-            <div class="popup__window">
-                <form class="popup__form">
-                    <h2 class="popup__title"></h2>
-                    <input class="popup__input" value="" name="" placeholder="" id="first-input">
-                    <input class="popup__input" value="" name="" placeholder="" id="second-input">
-                    <button class="popup__button" type="submit"></button>
-                </form>
-                <button type="button" class="popup__close-button" src="images/cross-icon.svg"></button>
-            </div>
+    <div class="popup popup_form_edit">
+        <div class="popup__window">
+            <form class="popup__form">
+                <h2 class="popup__title">Редактировать профиль</h2>
+                <input class="popup__input" value="Жак-Ив Кусто" id="userName" placeholder="Введите имя">
+                <input class="popup__input" value="Исследователь океана" id="userDescription"
+                    placeholder="Введите описание">
+                <button class="popup__button" type="submit">Сохранить</button>
+            </form>
+            <button type="button" class="popup__close-button" src="images/cross-icon.svg"></button>
         </div>
-    </template>
-
-    <template id="image-popup">
-        <div class="image-popup">
-            <div class="image-popup__container">
-                <img class="image-popup__image"
-                    src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg">
-                <button type="button" class="image-popup__button" src="images/cross-icon.svg"></button>
-                <p class="image-popup__description">Архыз</p>
-            </div>
-        </div>
-    </template>
-
     </div>
-    
+    <div class="popup popup_form_add">
+        <div class="popup__window">
+            <form class="popup__form">
+                <h2 class="popup__title">Новое место</h2>
+                <input class="popup__input" value="" id="cardTitle" placeholder="Название">
+                <input class="popup__input" value="" id="cardLink" placeholder="Ссылка на картинку">
+                <button class="popup__button" type="submit">Создать</button>
+            </form>
+            <button type="button" class="popup__close-button" src="images/cross-icon.svg"></button>
+        </div>
+    </div>
+    <div class="image-popup">
+        <div class="image-popup__container">
+            <img class="image-popup__image"
+                src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg">
+            <button type="button" class="image-popup__button" src="images/cross-icon.svg"></button>
+            <p class="image-popup__description">Архыз</p>
+        </div>
+    </div>
+    </div>
     <script src="scripts/script.js"></script>
 </body>
-
 
 </html>
