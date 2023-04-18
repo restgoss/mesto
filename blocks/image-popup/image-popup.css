@@ -1,5 +1,6 @@
 .image-popup {
     visibility: hidden;
+    opacity: 0;
     display: flex;
     position: fixed;
     top: 0;
