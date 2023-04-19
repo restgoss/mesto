@@ -10,7 +10,7 @@ const body = document.querySelector('body');
 const imagePopup = document.querySelector('.image-popup');
 const imagePopupCloseButton = imagePopup.querySelector('.image-popup__button');
 const cardsSection = document.querySelector('.cards');
-
+const addCardForm = addCardModalWindow.querySelector('.popup__form');
 const initialCards = [
     {
         name: 'Архыз',
@@ -38,54 +38,8 @@ const initialCards = [
     }
 ];
 
-editProfileButton.addEventListener('click', function () {
-    const modalWindow = editProfileModalWindow;
-    openModalWindow(modalWindow);
-});
-
-addCardButton.addEventListener('click', function () {
-    const modalWindow = addCardModalWindow;
-    openModalWindow(modalWindow);
-});
-
-editProfileModalWindow.querySelector('.popup__close-button').addEventListener('click', function () {
-    const modalWindow = editProfileModalWindow;
-    closeModalWindow(modalWindow);
-});
-
-addCardModalWindow.querySelector('.popup__close-button').addEventListener('click', function () {
-    const modalWindow = addCardModalWindow;
-    closeModalWindow(modalWindow);
-});
-
-imagePopupCloseButton.addEventListener('click', function () {
-    const modalWindow = imagePopup;
-    closeModalWindow(modalWindow);
-})
-
-addCardModalWindow.addEventListener('submit', function (event) {
-    event.preventDefault();
-    const name = addCardModalWindow.querySelector('#cardTitle').value;
-    const link = addCardModalWindow.querySelector('#cardLink').value;
-    const cardData = { name: name, link: link };
-    renderCard(cardData, cardsSection);
-    closeModalWindow(addCardModalWindow);
-})
-
-editProfileModalWindow.addEventListener('submit', function (event) {
-    event.preventDefault();
-    currentName.textContent = editProfileModalWindow.querySelector('#userName').value;
-    currentDescription.textContent = editProfileModalWindow.querySelector('#userDescription').value;
-    closeModalWindow(editProfileModalWindow);
-})
-
-
 function openModalWindow(modalWindow) {
     modalWindow.classList.add('popup_active');
-    if (modalWindow == addCardModalWindow) {
-        addCardModalWindow.querySelector('#cardTitle').value = '';
-        addCardModalWindow.querySelector('#cardLink').value = '';
-    }
 }
 
 function closeModalWindow(modalWindow) {
@@ -114,6 +68,7 @@ function createCard(name, link) {
     cardImage.addEventListener('click', () => {
         imagePopup.querySelector('.image-popup__description').textContent = cardTitle.textContent;
         imagePopup.querySelector('.image-popup__image').src = cardImage.src;
+        imagePopup.querySelector('.image-popup__image').alt = cardTitle.textContent;
         imagePopup.classList.add('popup_active');
     })
 
@@ -121,9 +76,6 @@ function createCard(name, link) {
 }
 
 function renderCard(cardData, container) {
-    if (!Array.isArray(cardData)) {
-        cardData = [cardData];
-    }
     for (let data of cardData) {
         const card = createCard(data.name, data.link);
         container.prepend(card);
@@ -131,3 +83,40 @@ function renderCard(cardData, container) {
 }
 
 renderCard(initialCards, cardsSection);
+
+editProfileButton.addEventListener('click', function () {
+    openModalWindow(editProfileModalWindow);
+});
+
+addCardButton.addEventListener('click', function () {
+    openModalWindow(addCardModalWindow);
+});
+
+editProfileModalWindow.querySelector('.popup__close-button').addEventListener('click', function () {
+    closeModalWindow(editProfileModalWindow);
+});
+
+addCardModalWindow.querySelector('.popup__close-button').addEventListener('click', function () {
+    closeModalWindow(addCardModalWindow);
+});
+
+imagePopupCloseButton.addEventListener('click', function () {
+    closeModalWindow(modalWindow);
+})
+
+addCardModalWindow.addEventListener('submit', function (event) {
+    event.preventDefault();
+    const name = addCardModalWindow.querySelector('#cardTitle').value;
+    const link = addCardModalWindow.querySelector('#cardLink').value;
+    const cardData = [{ name: name, link: link }];
+    renderCard(cardData, cardsSection);
+    closeModalWindow(addCardModalWindow);
+    addCardForm.reset();
+})
+
+editProfileModalWindow.addEventListener('submit', function (event) {
+    event.preventDefault();
+    currentName.textContent = editProfileModalWindow.querySelector('#userName').value;
+    currentDescription.textContent = editProfileModalWindow.querySelector('#userDescription').value;
+    closeModalWindow(editProfileModalWindow);
+})
