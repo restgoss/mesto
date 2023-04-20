@@ -69,20 +69,24 @@ function createCard(name, link) {
         imagePopup.querySelector('.image-popup__description').textContent = cardTitle.textContent;
         imagePopup.querySelector('.image-popup__image').src = cardImage.src;
         imagePopup.querySelector('.image-popup__image').alt = cardTitle.textContent;
-        imagePopup.classList.add('popup_active');
+        openModalWindow(imagePopup);
     })
 
     return card;
 }
 
 function renderCard(cardData, container) {
-    for (let data of cardData) {
-        const card = createCard(data.name, data.link);
-        container.prepend(card);
-    }
+    const card = createCard(cardData.name, cardData.link);
+    container.prepend(card);
+
 }
 
-renderCard(initialCards, cardsSection);
+initialCards.forEach((data) => {
+    renderCard(data, cardsSection);
+})
+
+
+
 
 editProfileButton.addEventListener('click', function () {
     openModalWindow(editProfileModalWindow);
@@ -101,14 +105,14 @@ addCardModalWindow.querySelector('.popup__close-button').addEventListener('click
 });
 
 imagePopupCloseButton.addEventListener('click', function () {
-    closeModalWindow(modalWindow);
+    closeModalWindow(imagePopup);
 })
 
 addCardModalWindow.addEventListener('submit', function (event) {
     event.preventDefault();
     const name = addCardModalWindow.querySelector('#cardTitle').value;
     const link = addCardModalWindow.querySelector('#cardLink').value;
-    const cardData = [{ name: name, link: link }];
+    const cardData = { name: name, link: link };
     renderCard(cardData, cardsSection);
     closeModalWindow(addCardModalWindow);
     addCardForm.reset();
