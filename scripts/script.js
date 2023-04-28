@@ -1,3 +1,4 @@
+
 const addCardModalWindow = document.querySelector('.popup_form_add');
 const editProfileModalWindow = document.querySelector('.popup_form_edit');
 const currentName = document.querySelector('.profile__name');
@@ -11,6 +12,7 @@ const imagePopup = document.querySelector('.image-popup');
 const imagePopupCloseButton = imagePopup.querySelector('.image-popup__button');
 const cardsSection = document.querySelector('.cards');
 const addCardForm = addCardModalWindow.querySelector('.popup__form');
+const popupOverlay = document.querySelector('.popup');
 const initialCards = [
     {
         name: 'Архыз',
@@ -81,12 +83,24 @@ function renderCard(cardData, container) {
 
 }
 
+function closeActivePopupOnEscape(event) {
+    if (event.key === 'Escape') {
+        const activePopup = document.querySelector('.popup_active');
+        if (activePopup) {
+            closeModalWindow(activePopup);
+        }
+    }
+}
+
+function closePopupOnOverlayClick(event) {
+    if (event.target.classList.contains('popup') || event.target.classList.contains('image-popup')) {
+        closeModalWindow(event.target);
+    }
+}
+
 initialCards.forEach((data) => {
     renderCard(data, cardsSection);
 })
-
-
-
 
 editProfileButton.addEventListener('click', function () {
     openModalWindow(editProfileModalWindow);
@@ -106,7 +120,7 @@ addCardModalWindow.querySelector('.popup__close-button').addEventListener('click
 
 imagePopupCloseButton.addEventListener('click', function () {
     closeModalWindow(imagePopup);
-})
+});
 
 addCardModalWindow.addEventListener('submit', function (event) {
     event.preventDefault();
@@ -124,3 +138,14 @@ editProfileModalWindow.addEventListener('submit', function (event) {
     currentDescription.textContent = editProfileModalWindow.querySelector('#userDescription').value;
     closeModalWindow(editProfileModalWindow);
 })
+
+document.addEventListener('keydown', closeActivePopupOnEscape);
+
+addCardModalWindow.addEventListener('mousedown', closePopupOnOverlayClick);
+
+editProfileModalWindow.addEventListener('mousedown', closePopupOnOverlayClick);
+
+imagePopup.addEventListener('mousedown', closePopupOnOverlayClick);
+
+
+

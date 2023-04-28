@@ -1,11 +1,11 @@
 .popup__input {
+    padding: 0;
     width: 358px;
     min-height: 27px;
     border-width: 1px;
     outline: none;
     border: none;
     border-bottom: 1px solid rgba(0, 0, 0, .2);
-    margin-bottom: 30px;
     font-size: 14px;
     line-height: 17px;
 }
@@ -15,3 +15,4 @@
         width: 238px;
     }
 }
+
