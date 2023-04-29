@@ -13,6 +13,13 @@ const imagePopupCloseButton = imagePopup.querySelector('.image-popup__button');
 const cardsSection = document.querySelector('.cards');
 const addCardForm = addCardModalWindow.querySelector('.popup__form');
 const popupOverlay = document.querySelector('.popup');
+const submitButton = addCardModalWindow.querySelector('.popup__button');
+const imageDescriptionSelector = imagePopup.querySelector('.image-popup__description');
+const cardImageSelector = imagePopup.querySelector('.image-popup__image');
+const userNameInput = editProfileModalWindow.querySelector('#userName');
+const userDescriptionInput = editProfileModalWindow.querySelector('#userDescription');
+const newCardTitle = addCardModalWindow.querySelector('#cardTitle');
+const newCardLink = addCardModalWindow.querySelector('#cardLink');
 const initialCards = [
     {
         name: 'Архыз',
@@ -40,12 +47,23 @@ const initialCards = [
     }
 ];
 
-function openModalWindow(modalWindow) {
-    modalWindow.classList.add('popup_active');
+function closeActivePopupOnEscape(event) {
+    if (event.key === 'Escape') {
+        const activePopup = document.querySelector('.popup_active');
+        if (activePopup) {
+            closeModalWindow(activePopup);
+        }
+    }
 }
 
-function closeModalWindow(modalWindow) {
-    modalWindow.classList.remove('popup_active');
+function openModalWindow(popup) {
+    popup.classList.add('popup_active');
+    document.addEventListener('keydown', closeActivePopupOnEscape);
+}
+
+function closeModalWindow(popup) {
+    popup.classList.remove('popup_active');
+    document.removeEventListener('keydown', closeActivePopupOnEscape);
 }
 
 function createCard(name, link) {
@@ -68,9 +86,9 @@ function createCard(name, link) {
     });
 
     cardImage.addEventListener('click', () => {
-        imagePopup.querySelector('.image-popup__description').textContent = cardTitle.textContent;
-        imagePopup.querySelector('.image-popup__image').src = cardImage.src;
-        imagePopup.querySelector('.image-popup__image').alt = cardTitle.textContent;
+        imageDescriptionSelector.textContent = cardTitle.textContent;
+        cardImageSelector.src = cardImage.src;
+        cardImageSelector.alt = cardTitle.textContent;
         openModalWindow(imagePopup);
     })
 
@@ -81,15 +99,6 @@ function renderCard(cardData, container) {
     const card = createCard(cardData.name, cardData.link);
     container.prepend(card);
 
-}
-
-function closeActivePopupOnEscape(event) {
-    if (event.key === 'Escape') {
-        const activePopup = document.querySelector('.popup_active');
-        if (activePopup) {
-            closeModalWindow(activePopup);
-        }
-    }
 }
 
 function closePopupOnOverlayClick(event) {
@@ -104,6 +113,8 @@ initialCards.forEach((data) => {
 
 editProfileButton.addEventListener('click', function () {
     openModalWindow(editProfileModalWindow);
+    userNameInput.value = currentName.textContent;
+    userDescriptionInput.value = currentDescription.textContent;
 });
 
 addCardButton.addEventListener('click', function () {
@@ -124,18 +135,18 @@ imagePopupCloseButton.addEventListener('click', function () {
 
 addCardModalWindow.addEventListener('submit', function (event) {
     event.preventDefault();
-    const name = addCardModalWindow.querySelector('#cardTitle').value;
-    const link = addCardModalWindow.querySelector('#cardLink').value;
-    const cardData = { name: name, link: link };
+    const cardData = { name: newCardTitle.value, link: newCardLink.value };
     renderCard(cardData, cardsSection);
     closeModalWindow(addCardModalWindow);
     addCardForm.reset();
+    submitButton.classList.add('popup__button_disabled');
+    submitButton.setAttribute('disabled', true);
 })
 
 editProfileModalWindow.addEventListener('submit', function (event) {
     event.preventDefault();
-    currentName.textContent = editProfileModalWindow.querySelector('#userName').value;
-    currentDescription.textContent = editProfileModalWindow.querySelector('#userDescription').value;
+    currentName.textContent = userNameInput.value;
+    currentDescription.textContent = userDescriptionInput.value;
     closeModalWindow(editProfileModalWindow);
 })
 
