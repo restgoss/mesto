@@ -1,8 +1,8 @@
-export const imagePopup = document.querySelector('.image-popup');
-export const imagePopupCloseButton = imagePopup.querySelector('.image-popup__button');
+import { closeActivePopupOnEscape, openModalWindow, closeModalWindow } from "./index.js";
+
+const imagePopup = document.querySelector('.popup_image-view');
 const imageDescriptionSelector = imagePopup.querySelector('.image-popup__description');
 const cardImageSelector = imagePopup.querySelector('.image-popup__image');
-
 
 export class Card {
     constructor(cardData, cardTemplate) {
@@ -15,6 +15,7 @@ export class Card {
         const cardTemplate = document
             .querySelector(this._cardTemplate)
             .content
+            .querySelector('.element')
             .cloneNode(true);
 
         return cardTemplate;
@@ -22,40 +23,42 @@ export class Card {
 
     generateCard() {
         this._element = this._getTemplate();
+        this._cardImage = this._element.querySelector('.element__image');
+        this._likeButton = this._element.querySelector('.element__button');
         this._setEventListeners();
-        this._element.querySelector('.element__image').src = this._image;
+        this._cardImage.src = this._image;
+        this._cardImage.alt = this._title;
         this._element.querySelector('.element__title').textContent = this._title;
         return this._element;
     }
 
     _handleOpenImagePopup() {
         cardImageSelector.src = this._image;
+        cardImageSelector.alt = this._title;
         imageDescriptionSelector.textContent = this._title;
-        imagePopup.classList.add('popup_active');
+        openModalWindow(imagePopup);
     }
 
     _handleCloseImagePopup() {
         cardImageSelector.src = '';
         imageDescriptionSelector.textContent = '';
-        imagePopup.classList.remove('popup_active');
+        closeModalWindow(imagePopup);
+    }
+
+    _handleLikeClick() {
+        this._likeButton.classList.toggle('element__button_active');
     }
 
     _setEventListeners() {
-        const likeButton = this._element.querySelector('.element__button');
-        const elementImage = this._element.querySelector('.element__image');
         const deleteButton = this._element.querySelector('.element__delete-btn');
-        elementImage.addEventListener('click', () => {
+        this._cardImage.addEventListener('click', () => {
             this._handleOpenImagePopup();
-        })
+        });
 
-        likeButton.addEventListener('click', () => {
-            likeButton.classList.toggle('element__button_active');
-        })
-
+        this._likeButton.addEventListener('click', () => this._handleLikeClick());
         deleteButton.addEventListener('click', () => {
-            deleteButton.parentNode.remove();
-        })
+            this._element.remove();
+            this.element = null;
+        });
     }
 }
-
-
