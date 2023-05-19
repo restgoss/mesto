@@ -1,8 +1,8 @@
 import { closeActivePopupOnEscape, openModalWindow, closeModalWindow } from "./index.js";
 
 const imagePopup = document.querySelector('.popup_image-view');
-const imageDescriptionSelector = imagePopup.querySelector('.image-popup__description');
-const cardImageSelector = imagePopup.querySelector('.image-popup__image');
+const imageDescriptionSelector = imagePopup.querySelector('.popup__description');
+const cardImageSelector = imagePopup.querySelector('.popup__image');
 
 export class Card {
     constructor(cardData, cardTemplate) {
