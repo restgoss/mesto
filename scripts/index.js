@@ -1,5 +1,5 @@
-import { initialCards } from './data.js';
-import { FormValidator, validationSettings } from './FormValidator.js';
+import { initialCards, validationSettings } from './data.js';
+import { FormValidator } from './FormValidator.js';
 import { Card } from './Card.js';
 
 const cardAddModalWindow = document.querySelector('.popup_form_add');
