@@ -16,34 +16,34 @@ const userDescriptionInput = profileEditModalWindow.querySelector('#userDescript
 const newCardTitle = cardAddModalWindow.querySelector('#cardTitle');
 const newCardLink = cardAddModalWindow.querySelector('#cardLink');
 
-
-
 const renderElements = (() => {
     initialCards.forEach((item) => {
-        const card = createCard(item, '#card__template');
-        const cardElement = card.generateCard();
-        cardsSection.append(cardElement);
+        const cardRendered = createCard(item, '#card__template');
+        cardsSection.append(cardRendered);
     });
 })();
 
 function createCard(cardData, cardTemplate) {
-    return new Card(cardData, '#card__template');
+    const newCard = new Card(cardData, '#card__template');
+    return newCard.generateCard();
 }
 
+// Вы наконец определитесь, что больше расходует памяти: постоянное установление/удаление слушателей, или что они постоянно висят?)) Надоело туда сюда исправлять.
+
 export function openModalWindow(popup) {
-    document.addEventListener('keydown', closeActivePopupOnEscape);
-    popup.addEventListener('mousedown', () => closeActivePopupOnEscape(popup));
-    popup.classList.add('popup_active');
+  document.addEventListener('keydown', closeActivePopupOnEscape);
+  popup.addEventListener('mousedown', (evt) => {
+    if (evt.target.classList.contains('popup_active')) {
+        closeModalWindow(evt.target);
+    }
+  });
+  popup.classList.add('popup_active');
 }
 
 export function closeModalWindow(popup) {
-    document.removeEventListener('keydown', () => closePopupOnOverlayClick);
-    popup.removeEventListener('mousedown', () => closeActivePopupOnEscape(popup));
-    popup.classList.remove('popup_active');
-}       
-
-function closePopupOnOverlayClick(event) {
-    closeModalWindow(event.target);
+  document.removeEventListener('keydown', closeActivePopupOnEscape);
+  popup.closest('.popup').removeEventListener('mousedown', () => closePopupOnOverlayClick);
+  popup.classList.remove('popup_active');
 }
 
 export function closeActivePopupOnEscape(event) {
@@ -91,12 +91,8 @@ document.querySelectorAll('.popup__close-button').forEach((button) => {
     button.addEventListener('click', () => closeModalWindow(buttonsPopup));
 });
 
-document.querySelectorAll('.popup').forEach((overlay) => {
-    overlay.addEventListener('mousedown', closePopupOnOverlayClick);
-});
-
 const profileValidator = new FormValidator(profileEditForm, validationSettings);
 const cardAddValidator = new FormValidator(cardAddForm, validationSettings);
 
-profileValidator.enableValidation(profileEditForm);
-cardAddValidator.enableValidation(cardAddForm);
+profileValidator.enableValidation();
+cardAddValidator.enableValidation();
