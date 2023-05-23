@@ -40,7 +40,7 @@ export function closeModalWindow(popup) {
     document.removeEventListener('keydown', () => closePopupOnOverlayClick);
     popup.removeEventListener('mousedown', () => closeActivePopupOnEscape(popup));
     popup.classList.remove('popup_active');
-}
+}       
 
 function closePopupOnOverlayClick(event) {
     closeModalWindow(event.target);
@@ -74,7 +74,7 @@ cardAddModalWindow.addEventListener('submit', function (event) {
     cardsSection.prepend(cardElement);
     closeModalWindow(cardAddModalWindow);
     cardAddForm.reset();
-    cardAddValidator._disableButton();
+    cardAddValidator.disableButton();
 })
 
 profileEditModalWindow.addEventListener('submit', function (event) {
@@ -82,7 +82,7 @@ profileEditModalWindow.addEventListener('submit', function (event) {
     currentName.textContent = userNameInput.value;
     currentDescription.textContent = userDescriptionInput.value;
     closeModalWindow(profileEditModalWindow);
-    profileValidator._enableButton();
+    profileValidator.enableButton();
 })
 
 
