@@ -28,28 +28,28 @@ function createCard(cardData, cardTemplate) {
     return newCard.generateCard();
 }
 
-// Вы наконец определитесь, что больше расходует памяти: постоянное установление/удаление слушателей, или что они постоянно висят?)) Надоело туда сюда исправлять.
-
 export function openModalWindow(popup) {
-  document.addEventListener('keydown', closeActivePopupOnEscape);
-  popup.addEventListener('mousedown', (evt) => {
-    if (evt.target.classList.contains('popup_active')) {
-        closeModalWindow(evt.target);
-    }
-  });
-  popup.classList.add('popup_active');
+    document.addEventListener('keydown', closeActivePopupOnEscape);
+    popup.classList.add('popup_active');
+    popup.addEventListener('mousedown', closePopupOnOverlayClick);
 }
 
 export function closeModalWindow(popup) {
-  document.removeEventListener('keydown', closeActivePopupOnEscape);
-  popup.closest('.popup').removeEventListener('mousedown', () => closePopupOnOverlayClick);
-  popup.classList.remove('popup_active');
+    document.removeEventListener('keydown', closeActivePopupOnEscape);
+    popup.classList.remove('popup_active');
+    popup.removeEventListener('mousedown', closePopupOnOverlayClick);
 }
 
 export function closeActivePopupOnEscape(event) {
     if (event.key === 'Escape') {
         const activePopup = document.querySelector('.popup_active');
         closeModalWindow(activePopup);
+    }
+}
+
+const closePopupOnOverlayClick = (evt) => {
+    if (evt.target.classList.contains('popup_active')) {
+        closeModalWindow(evt.target);
     }
 }
 
@@ -70,8 +70,7 @@ cardAddModalWindow.addEventListener('submit', function (event) {
         link: newCardLink.value
     };
     const card = createCard(cardData, '#card__template');
-    const cardElement = card.generateCard();
-    cardsSection.prepend(cardElement);
+    cardsSection.prepend(card);
     closeModalWindow(cardAddModalWindow);
     cardAddForm.reset();
     cardAddValidator.disableButton();

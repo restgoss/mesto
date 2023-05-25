@@ -46,7 +46,7 @@ export class Card {
 
     _handleDeleteCard() {
         this._element.remove();
-        this.element = null;
+        this._element = null;
     }
 
     _setEventListeners() {
