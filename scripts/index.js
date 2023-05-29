@@ -31,13 +31,11 @@ function createCard(cardData, cardTemplate) {
 export function openModalWindow(popup) {
     document.addEventListener('keydown', closeActivePopupOnEscape);
     popup.classList.add('popup_active');
-    popup.addEventListener('mousedown', closePopupOnOverlayClick);
 }
 
 export function closeModalWindow(popup) {
     document.removeEventListener('keydown', closeActivePopupOnEscape);
     popup.classList.remove('popup_active');
-    popup.removeEventListener('mousedown', closePopupOnOverlayClick);
 }
 
 export function closeActivePopupOnEscape(event) {
@@ -83,6 +81,10 @@ profileEditModalWindow.addEventListener('submit', function (event) {
     closeModalWindow(profileEditModalWindow);
     profileValidator.enableButton();
 })
+
+document.querySelectorAll('.popup').forEach((popup) => {
+    popup.addEventListener('mousedown', closePopupOnOverlayClick);
+});
 
 
 document.querySelectorAll('.popup__close-button').forEach((button) => {
