@@ -16,5 +16,5 @@ Flexbox Верстка
 Медиа запросы для корректного отображения на всех устройствах
 Grid Layout
 Организация файлов по БЭМ nested
-JavaScript для интерактивности
+JavaScript OOP
 Ссылка на сайт: https://restgoss.github.io/mesto/

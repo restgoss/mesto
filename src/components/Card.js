@@ -1,14 +1,9 @@
-import { openModalWindow } from "./index.js";
-
-const imagePopup = document.querySelector('.popup_image-view');
-const imageDescription = imagePopup.querySelector('.popup__description');
-const cardImage = imagePopup.querySelector('.popup__image');
-
 export class Card {
-    constructor(cardData, cardTemplate) {
+    constructor(cardData, cardTemplate, handleCardClick) {
         this._cardTemplate = cardTemplate;
         this._title = cardData.name;
         this._image = cardData.link;
+        this._handleCardClick = handleCardClick;
     }
 
     _getTemplate() {
@@ -33,13 +28,6 @@ export class Card {
         return this._element;
     }
 
-    _handleOpenImagePopup() {
-        cardImage.src = this._image;
-        cardImage.alt = this._title;
-        imageDescription.textContent = this._title;
-        openModalWindow(imagePopup);
-    }
-
     _handleLikeClick() {
         this._likeButton.classList.toggle('element__button_active');
     }
@@ -50,9 +38,8 @@ export class Card {
     }
 
     _setEventListeners() {
-        const deleteButton = this._element.querySelector('.element__delete-btn');
         this._cardImage.addEventListener('click', () => {
-            this._handleOpenImagePopup();
+            this._handleCardClick(this._title, this._image);
         });
 
         this._likeButton.addEventListener('click', () => this._handleLikeClick());

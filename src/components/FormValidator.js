@@ -30,6 +30,14 @@ export class FormValidator {
     errorElement.textContent = '';
   }
 
+  hideAllErrors() {
+    this.enableButton();
+    this._inputElements.forEach((input) => {
+      this._errorElement = this._form.querySelector(`.${input.id}-error`);
+      this._hideInputError(input);
+    })
+  }
+
   _checkInputValidity(inputElement) {
     if (!inputElement.validity.valid) {
       this._showInputError(inputElement, inputElement.validationMessage);

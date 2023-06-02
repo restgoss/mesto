@@ -1,3 +1,18 @@
+export const cardAddModalWindow = document.querySelector('.popup_form_add');
+export const profileEditModalWindow = document.querySelector('.popup_form_edit');
+export const currentNameSelector = '.profile__name';
+export const currentDescriptionSelector = '.profile__description';
+export const profileEditButton = document.querySelector('.profile__edit-btn');
+export const cardAddButton = document.querySelector('.profile__plus-btn');
+export const cardsSectionSelector = '.cards';
+export const cardAddForm = cardAddModalWindow.querySelector('.popup__form');
+export const profileEditForm = profileEditModalWindow.querySelector('.popup__form');
+export const imageModalWindow = document.querySelector('.popup_image-view');
+export const userNameInput = profileEditModalWindow.querySelector('#userName');
+export const userDescriptionInput = profileEditModalWindow.querySelector('#userDescription');
+export const newCardTitle = cardAddModalWindow.querySelector('#cardTitle');
+export const newCardLink = cardAddModalWindow.querySelector('#cardLink');
+
 export const initialCards = [
     {
         name: 'Архыз',
@@ -30,4 +45,4 @@ export const validationSettings = {
     submitButtonSelector: '.popup__button',
     disabledButtonClass: 'popup__button_disabled',
     errorClass: 'popup__error_active',
-  };
+};
