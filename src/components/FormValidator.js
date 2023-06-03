@@ -33,7 +33,6 @@ export class FormValidator {
   hideAllErrors() {
     this.enableButton();
     this._inputElements.forEach((input) => {
-      this._errorElement = this._form.querySelector(`.${input.id}-error`);
       this._hideInputError(input);
     })
   }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
@@ -45,13 +46,13 @@
             <form class="popup__form" novalidate>
                 <fieldset class="form">
                     <label class="form__input-label">
-                        <input class="popup__input" id="userName" placeholder="Введите имя"
-                            minlength="2" maxlength="40" required>
+                        <input class="popup__input" id="userName" placeholder="Введите имя" minlength="2" maxlength="40"
+                            required>
                         <span class="popup__error" id="userName-error"></span>
                     </label>
                     <label>
-                        <input class="popup__input" id="userDescription"
-                            placeholder="Введите описание" minlength="2" maxlength="200" required>
+                        <input class="popup__input" id="userDescription" placeholder="Введите описание" minlength="2"
+                            maxlength="200" required>
                         <span class="popup__error description-error" id="userDescription-error"></span>
                     </label>
                 </fieldset>
@@ -83,9 +84,8 @@
     </div>
     <div class="popup popup_image-view">
         <div class="popup__container">
-            <img class="popup__image"
-                src="#">
-                <button type="button" class="popup__close-button" src="<%=require('./images/cross-icon.svg')%>"></button>
+            <img class="popup__image" src="#">
+            <button type="button" class="popup__close-button" src="<%=require('./images/cross-icon.svg')%>"></button>
             <p class="popup__description"></p>
         </div>
     </div>

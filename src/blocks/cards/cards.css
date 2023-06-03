@@ -6,16 +6,19 @@
     grid-template-columns: repeat(3, 1fr);
     align-items: center;
     justify-content: center;
+    min-height: 45vh;
 }
 
 @media screen and (max-width: 1279px) {
     .cards {
+        min-height: 40vh;
         grid-template-columns: repeat(2, 280px);
     }
 }
 
 @media screen and (max-width: 767px) {
     .cards {
+        min-height: 30vh;
         grid-template-columns: 280px;
         margin-top: 36px;
     }

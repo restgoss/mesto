@@ -10,10 +10,8 @@ import {
     cardsSectionSelector,
     cardAddForm,
     profileEditForm,
-    userNameInput,
-    userDescriptionInput,
     imageModalWindow
-} from '../components/Constants.js';
+} from '../utils/Constants.js';
 import { FormValidator } from '../components/FormValidator.js';
 import { Card } from '../components/Card.js';
 import PopupWithForm from '../components/PopupWithForm.js';
@@ -22,11 +20,6 @@ import UserInfo from '../components/UserInfo.js';
 import Section from '../components/Section.js';
 import './index.css'
 
-function renderProfilePopupInputs() {
-    userNameInput.value = document.querySelector(currentNameSelector).textContent;
-    userDescriptionInput.value = document.querySelector(currentDescriptionSelector).textContent;
-}
-
 function submitProfileForm(userInfo) {
     profileInfo.setUserInfo(userInfo);
 };
@@ -34,6 +27,7 @@ function submitProfileForm(userInfo) {
 function submitCardForm(data) {
     const card = createCard(data, '#card__template', openImagePopup);
     cardList.addItem(card);
+    cardAddValidator.disableButton();
     cardAddPopup.closePopup();
 }
 
@@ -46,20 +40,15 @@ function openImagePopup(title, src) {
     imagePopup.openPopup(title, src);
 }
 
-
-profileEditButton.addEventListener('click', function () {
-    profilePopup.openPopup();
-});
-
 cardAddButton.addEventListener('click', function () {
     cardAddPopup.openPopup();
 });
 
 profileEditButton.addEventListener('click', () => {
-    renderProfilePopupInputs();
-    profileValidator._hideInputError
+    profilePopup.setInputValue(profileInfo.getUserInfo());
+    profilePopup.openPopup();
+    profileValidator.hideAllErrors();
 });
-
 
 const cardList = new Section({
     items: initialCards,
