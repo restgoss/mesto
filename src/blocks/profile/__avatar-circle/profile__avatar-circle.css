@@ -1,0 +1,20 @@
+.profile__avatar-circle {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    margin-right: 30px;
+}
+
+.profile__avatar-circle:hover .profile__edit-icon {
+    opacity: 1;
+}
+
+@media screen and (max-width: 1023px) {
+    .profile__avatar-circle {
+        margin: 0;
+        margin-bottom: 10px;
+    }
+}
+
+@media screen and (max-width: 767px) {}

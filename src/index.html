@@ -14,11 +14,14 @@
         </header>
         <main class="content">
             <section class="profile">
-                <img class="profile__avatar" src="<%=require('./images/avatar.jpg')%>" alt="Изображение профиля">
+                <div class="profile__avatar-circle">
+                    <img class="profile__edit-icon" src="<%=require('./images/edit-avatar.svg')%>">
+                    <img class="profile__avatar" src="#" alt="Изображение профиля">
+                </div>
                 <div class="profile__info">
-                    <h1 class="profile__name">Жак-Ив Кусто</h1>
+                    <h1 class="profile__name"></h1>
                     <button class="profile__edit-btn" type="button"></button>
-                    <p class="profile__description">Исследователь океана</p>
+                    <p class="profile__description"></p>
 
                 </div>
                 <button class="profile__plus-btn" type="button"></button>
@@ -36,7 +39,10 @@
             <button class="element__delete-btn" type="button"></button>
             <figcaption class="element__info">
                 <h2 class="element__title"></h2>
-                <button class="element__button" type="button"></button>
+                <div class="element__like-block">
+                    <button class="element__button" type="button"></button>
+                    <p class="element__like-counter">0</p>
+                </div>
             </figcaption>
         </figure>
     </template>
@@ -46,14 +52,14 @@
             <form class="popup__form" novalidate>
                 <fieldset class="form">
                     <label class="form__input-label">
-                        <input class="popup__input" id="userName" placeholder="Введите имя" minlength="2" maxlength="40"
+                        <input class="popup__input" id="name" placeholder="Введите имя" minlength="2" maxlength="40"
                             required>
-                        <span class="popup__error" id="userName-error"></span>
+                        <span class="popup__error" id="name-error"></span>
                     </label>
                     <label>
-                        <input class="popup__input" id="userDescription" placeholder="Введите описание" minlength="2"
+                        <input class="popup__input" id="about" placeholder="Введите описание" minlength="2"
                             maxlength="200" required>
-                        <span class="popup__error description-error" id="userDescription-error"></span>
+                        <span class="popup__error about-error" id="about-error"></span>
                     </label>
                 </fieldset>
                 <button class="popup__button" type="submit">Сохранить</button>
@@ -67,14 +73,14 @@
             <form class="popup__form" novalidate>
                 <fieldset class="form">
                     <label class="form__input-label">
-                        <input class="popup__input" value="" id="cardTitle" placeholder="Название" minlength="2"
+                        <input class="popup__input" value="" id="name" placeholder="Название" minlength="2"
                             maxlength="30" required>
-                        <span class="popup__error" id="cardTitle-error"></span>
+                        <span class="popup__error" id="name-error"></span>
                     </label>
                     <label>
-                        <input class="popup__input" type="url" value="" id="cardLink" placeholder="Ссылка на картинку"
+                        <input class="popup__input" type="url" value="" id="link" placeholder="Ссылка на картинку"
                             required>
-                        <span class="popup__error" id="cardLink-error"></span>
+                        <span class="popup__error" id="link-error"></span>
                     </label>
                 </fieldset>
                 <button class="popup__button popup__button_disabled" type="submit">Создать</button>
@@ -82,11 +88,40 @@
             <button type="button" class="popup__close-button" src="<%=require('./images/cross-icon.svg')%>"></button>
         </div>
     </div>
+
+    <div class="popup popup_form_avatar">
+        <div class="popup__window">
+            <h2 class="popup__title">Обновить аватар</h2>
+            <form class="popup__form" novalidate>
+                <fieldset class="form">
+                    <label class="form__input-label">
+                        <input class="popup__input" value="" type="url" id="avatar" placeholder="Ссылка на изображение"
+                            required>
+                        <span class="popup__error" id="avatar-error"></span>
+                    </label>
+                </fieldset>
+                <button class="popup__button popup__button_disabled" type="submit">Создать</button>
+            </form>
+            <button type="button" class="popup__close-button" src="<%=require('./images/cross-icon.svg')%>"></button>
+        </div>
+    </div>
+
+
     <div class="popup popup_image-view">
         <div class="popup__container">
             <img class="popup__image" src="#">
             <button type="button" class="popup__close-button" src="<%=require('./images/cross-icon.svg')%>"></button>
             <p class="popup__description"></p>
+        </div>
+    </div>
+
+    <div class="popup popup_delete_ask">
+        <div class="popup__window">
+            <form class="popup__form" novalidate>
+                <h2 class="popup__title">Вы уверены?</h2>
+                <button class="popup__button" type="submit">Да</button>
+            </form>
+            <button type="button" class="popup__close-button" src="<%=require('./images/cross-icon.svg')%>"></button>
         </div>
     </div>
 </body>
