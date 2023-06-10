@@ -32,6 +32,7 @@ export default class Api {
     }
 
     addNewCard(data) {
+        console.log(data);
         return fetch(`${this._defaultUrl}/cards`, {
             method: "POST",
             headers: this._headers,

@@ -35,12 +35,11 @@ const cardList = new Section({
     }
 }, cardsSectionSelector);
 
-function submitProfileForm(userInfo) {
-    console.log('submiting');
+async function submitProfileForm(userInfo) {
     profilePopup.renderLoading(true, 'Сохранение...')
     try {
         profileInfo.setUserInfo(userInfo);
-        api.setUserInfo(userInfo);
+        await api.setUserInfo(userInfo);
         profilePopup.closePopup();
     } catch (e) {
         console.warn(e)
@@ -106,10 +105,11 @@ function openImagePopup(title, src) {
     imagePopup.openPopup(title, src);
 }
 
-function submitAvatarForm() {
+async function submitAvatarForm(userInfo) {
     avatarPopup.renderLoading(true, 'Сохранение...')
     try {
-        const res = api.changeAvatar(avatarPopup._getInputValue());
+        const res = await api.changeAvatar(avatarPopup._getInputValue());
+        profileInfo.setUserAvatar(userInfo);
         avatarPopup.closePopup();
     } catch (e) {
         console.warn(e);
@@ -184,6 +184,9 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
     .then(([userData, cards]) => {
         userId = userData._id;
         profileInfo.setUserInfo(userData);
+        profileInfo.setUserAvatar(userData);
         cardList.renderItems(cards.reverse());
     })
     .catch((e) => console.log(e));
+
+    console.log(api.getInitialCards());
