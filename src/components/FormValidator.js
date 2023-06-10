@@ -7,7 +7,7 @@ export class FormValidator {
     this._errorClass = settings.errorClass;
     this._inputElements = Array.from(this._formElement.querySelectorAll(this._inputSelector));
   }
-
+  
   enableButton() {
     this._submitButton.classList.remove(this._disabledButtonClass);
     this._submitButton.removeAttribute('disabled');

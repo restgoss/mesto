@@ -13,14 +13,22 @@ export default class PopupWithForm extends Popup {
     _getInputValue() {
         this._inputValues = {};
         this._inputs.forEach(input => {
-            return this._inputValues[input.id] = input.value;
+            if (input.id === 'name2' || input.id === 'name1') {
+                return this._inputValues['name'] = input.value;
+            } else {
+                return this._inputValues[input.id] = input.value;
+            }
         })
         return this._inputValues;
     }
 
     setInputValue(data) {
         this._inputs.forEach((item) => {
-            item.value = data[item.id];
+            if (item.id === 'name1') {
+                item.value = data.name;
+            } else {
+                item.value = data[item.id];
+            }
         })
     }
 
@@ -40,7 +48,7 @@ export default class PopupWithForm extends Popup {
             this.closePopup();
         })
     }
-    
+
     closePopup() {
         super.closePopup();
         this._form.reset();

@@ -53,6 +53,7 @@ async function submitProfileForm(userInfo) {
 async function submitCardForm(data) {
     cardAddPopup.renderLoading(true, 'Сохранение...')
     try {
+        console.log('submitCardForm: ', data);
         data.likes = [];
         const res = await api.addNewCard(data);
         const card = createCard(res);
@@ -188,5 +189,3 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
         cardList.renderItems(cards.reverse());
     })
     .catch((e) => console.log(e));
-
-    console.log(api.getInitialCards());

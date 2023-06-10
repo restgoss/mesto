@@ -21,6 +21,7 @@ export default class Api {
     }
 
     setUserInfo(userInfo) {
+        console.log(userInfo);
         return fetch(`${this._defaultUrl}/users/me`, {
             method: 'PATCH',
             headers: this._headers,
@@ -32,7 +33,7 @@ export default class Api {
     }
 
     addNewCard(data) {
-        console.log(data);
+        console.log('API, addNewCard: ', data);
         return fetch(`${this._defaultUrl}/cards`, {
             method: "POST",
             headers: this._headers,
