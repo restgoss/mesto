@@ -132,6 +132,8 @@ profileEditButton.addEventListener('click', () => {
 
 avatarEditButton.addEventListener('click', () => {
     avatarPopup.openPopup();
+    avatarFormValidator.hideAllErrors();
+    avatarFormValidator.disableButton();
 })
 
 
