@@ -1,0 +1,38 @@
+.profile__plus-btn {
+    width: 150px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0);
+    border: 2px solid #FFFFFF;
+    border-radius: 2px;
+    background-image: url(../../../images/plus-btn.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-left: auto;
+    transition: opacity .3s linear;
+}
+
+.profile__plus-btn:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 1279px) {
+    .profile__plus-btn {
+        width: 100px;
+        height: 40px;
+    }
+}
+
+@media screen and (max-width: 1023px) {
+    .profile__plus-btn {
+        margin: 30px auto 0 auto;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .profile__plus-btn {
+        width: 282px;
+        height: 50px;
+        margin: 0 auto 0 auto;
+    }
+}
